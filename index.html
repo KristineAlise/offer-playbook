@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Offer Playbook · She Builds Anyway</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pacific:#3B7A9A; --pacific-dark:#2A5A75; --pacific-deeper:#1F4458;
+    --coral:#E89B8A; --coral-deep:#D17F6E; --cream:#FDFAF3; --blush:#F5C2C0;
+    --plum:#4A3548; --gold:#E0B870; --soft-cream:#FFFEFB; --pacific-light:#B0CCD9;
+    --border:#E0D5C5; --slip-paper:#FBF4E4;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--cream);color:var(--plum);
+    font-family:'Inter','Helvetica','Arial',sans-serif;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:linear-gradient(165deg, var(--pacific-dark) 0%, var(--pacific-deeper) 100%);
+    color:#fff;text-align:center;padding:46px 24px 40px;
+  }
+  .hero-pill{
+    display:inline-flex;align-items:center;gap:7px;
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);
+    color:#fff;font-size:12px;font-weight:600;letter-spacing:1.4px;
+    text-transform:uppercase;padding:8px 16px;border-radius:30px;margin-bottom:22px;
+  }
+  .hero h1{
+    font-family:'Georgia',serif;font-size:44px;font-weight:700;
+    letter-spacing:-.5px;line-height:1.15;margin:0 0 14px;
+  }
+  .hero h1 .accent{color:var(--coral);font-style:italic;font-weight:400;}
+  .hero-subtitle{
+    font-size:17px;color:rgba(255,255,255,.85);max-width:560px;
+    margin:0 auto;line-height:1.6;
+  }
+
+  /* ---------- CORAL BAND ---------- */
+  .cta-bar{
+    background:var(--coral);color:#fff;text-align:center;padding:14px 32px;
+    font-family:'Georgia',serif;font-style:italic;font-size:16px;font-weight:500;
+  }
+
+  /* ---------- CONTENT ---------- */
+  .content{max-width:720px;margin:0 auto;padding:44px 22px 32px;}
+
+  .form-card{
+    background:#fff;border:1px solid var(--border);border-left:4px solid var(--coral);
+    border-radius:0 14px 14px 0;padding:30px 30px 26px;
+    box-shadow:0 2px 12px rgba(74,53,72,.06);
+  }
+  .form-label{
+    font-size:11px;letter-spacing:1.6px;text-transform:uppercase;
+    color:var(--coral-deep);font-weight:700;margin-bottom:16px;
+  }
+  .form-title{
+    font-family:'Georgia',serif;font-size:23px;color:var(--plum);
+    line-height:1.35;margin:0 0 8px;
+  }
+  .form-intro{font-size:14.5px;color:var(--plum);opacity:.78;margin:0 0 24px;}
+
+  .field{margin-bottom:22px;}
+  .field-label{display:block;font-weight:600;font-size:14px;color:var(--plum);margin-bottom:8px;}
+  .field-label .q{font-family:'Georgia',serif;}
+  .req{color:var(--coral);}
+  .hint{display:block;font-weight:400;font-size:12.5px;color:var(--plum);opacity:.6;margin-top:2px;font-style:italic;}
+
+  input[type=text],input[type=email],textarea{
+    width:100%;padding:12px 15px;border:1.5px solid var(--border);border-radius:10px;
+    background:var(--cream);color:var(--plum);font-size:15px;font-family:inherit;
+    transition:border-color .15s,background .15s;
+  }
+  textarea{min-height:96px;resize:vertical;line-height:1.55;}
+  input:focus,textarea:focus{outline:none;border-color:var(--coral);background:#fff;}
+  ::placeholder{color:var(--plum);opacity:.4;}
+
+  .row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:560px){.row-2{grid-template-columns:1fr;gap:0;}}
+
+  /* ---------- PACIFIC PILL BUTTONS ---------- */
+  .seg{display:grid;gap:8px;}
+  .seg.four{grid-template-columns:repeat(4,1fr);}
+  .seg.two{grid-template-columns:repeat(2,1fr);}
+  @media(max-width:560px){.seg.four{grid-template-columns:repeat(2,1fr);}}
+  .seg button{
+    padding:13px 10px;border:1.5px solid var(--border);border-radius:10px;
+    background:var(--cream);color:var(--plum);font-family:inherit;font-weight:600;
+    font-size:14px;cursor:pointer;transition:all .15s ease;
+  }
+  .seg button:hover{border-color:var(--pacific-light);background:#fff;}
+  .seg button.selected{
+    background:var(--pacific);border-color:var(--pacific);color:#fff;
+    box-shadow:0 3px 10px rgba(59,122,154,.25);
+  }
+
+  /* ---------- BUTTONS ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:.5rem;width:100%;
+    padding:15px 20px;border:none;border-radius:12px;background:var(--coral);color:#fff;
+    font-family:inherit;font-weight:700;font-size:1.05rem;cursor:pointer;
+    transition:transform .08s,background .15s;margin-top:6px;
+  }
+  .btn:hover{background:var(--coral-deep);}
+  .btn:active{transform:translateY(1px);}
+  .btn:disabled{opacity:.6;cursor:not-allowed;}
+  .btn-ghost{background:#fff;color:var(--pacific-dark);border:1.5px solid var(--border);}
+  .btn-ghost:hover{background:var(--cream);}
+
+  /* ---------- FLOWER DIVIDER ---------- */
+  .flower-divider{display:flex;align-items:center;justify-content:center;gap:16px;margin:34px 0 26px;}
+  .flower-divider::before,.flower-divider::after{
+    content:'';flex:1;max-width:100px;height:1px;background:var(--coral);opacity:.45;
+  }
+  .bloom{
+    width:30px;height:30px;background-size:contain;background-repeat:no-repeat;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-20 -20 40 40'><g fill='none' stroke='%23E89B8A' stroke-width='2'><ellipse cx='0' cy='-10' rx='5' ry='9'/><ellipse cx='0' cy='-10' rx='5' ry='9' transform='rotate(72)'/><ellipse cx='0' cy='-10' rx='5' ry='9' transform='rotate(144)'/><ellipse cx='0' cy='-10' rx='5' ry='9' transform='rotate(216)'/><ellipse cx='0' cy='-10' rx='5' ry='9' transform='rotate(288)'/></g><circle cx='0' cy='0' r='4' fill='none' stroke='%23E0B870' stroke-width='2'/></svg>");
+  }
+
+  /* ---------- LOADING / ERROR ---------- */
+  .loading{text-align:center;padding:44px 20px;}
+  .spinner{
+    width:42px;height:42px;border:4px solid var(--blush);border-top-color:var(--coral);
+    border-radius:50%;margin:0 auto 18px;animation:spin 1s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .loading p{color:var(--plum);opacity:.75;font-size:1.05rem;}
+  .error{
+    background:#fbe7e1;border:1px solid #f1c4ba;border-radius:14px;
+    padding:22px;text-align:center;
+  }
+  .error p{margin:0 0 14px;color:#9c3a2a;}
+
+  /* ---------- RESULT (slip-paper card) ---------- */
+  .result-card{
+    background:var(--slip-paper);border:6px double var(--pacific);border-radius:6px;
+    padding:36px 32px 30px;position:relative;
+    box-shadow:0 4px 18px rgba(74,53,72,.12), inset 0 0 0 1px rgba(232,155,138,.18);
+  }
+  .slip-corner{
+    position:absolute;width:26px;height:26px;background-size:contain;background-repeat:no-repeat;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-20 -20 40 40'><g fill='none' stroke='%23E89B8A' stroke-width='2'><ellipse cx='0' cy='-10' rx='5' ry='9'/><ellipse cx='0' cy='-10' rx='5' ry='9' transform='rotate(72)'/><ellipse cx='0' cy='-10' rx='5' ry='9' transform='rotate(144)'/><ellipse cx='0' cy='-10' rx='5' ry='9' transform='rotate(216)'/><ellipse cx='0' cy='-10' rx='5' ry='9' transform='rotate(288)'/></g><circle cx='0' cy='0' r='4' fill='none' stroke='%23E0B870' stroke-width='2'/></svg>");
+  }
+  .slip-corner.tl{top:12px;left:12px;} .slip-corner.tr{top:12px;right:12px;}
+  .slip-corner.bl{bottom:12px;left:12px;} .slip-corner.br{bottom:12px;right:12px;}
+
+  .result-card h2{
+    font-family:'Georgia',serif;font-size:26px;color:var(--pacific);font-weight:700;
+    line-height:1.2;margin:.2rem 0 1.1rem;
+  }
+  .result-card h3{
+    font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--coral-deep);
+    font-weight:700;margin:1.6rem 0 .3rem;
+  }
+  .result-card p{margin:.4rem 0;color:var(--plum);}
+  .result-card strong{color:var(--pacific-dark);}
+
+  .result-actions{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;}
+  .result-actions .btn{margin-top:0;flex:1;min-width:150px;}
+
+  .privacy-note{text-align:center;font-size:12.5px;color:var(--plum);opacity:.6;margin:14px 0 0;}
+
+  /* ---------- SKOOL INVITE ---------- */
+  .join-card{
+    background:linear-gradient(165deg, var(--pacific-dark) 0%, var(--pacific-deeper) 100%);
+    color:#fff;text-align:center;border-radius:18px;padding:36px 28px;margin-top:38px;
+  }
+  .join-card .bloom{margin:0 auto 14px;}
+  .join-card h3{
+    font-family:'Georgia',serif;font-size:25px;color:#fff;font-weight:700;
+    margin:0 0 10px;letter-spacing:0;text-transform:none;
+  }
+  .join-card p{color:rgba(255,255,255,.85);max-width:440px;margin:0 auto 22px;font-size:15px;}
+  .join-btn{
+    display:inline-flex;width:auto;text-decoration:none;background:var(--coral);margin-top:0;
+  }
+  .join-btn:hover{background:var(--coral-deep);}
+
+  footer{text-align:center;margin-top:30px;color:var(--plum);opacity:.6;font-size:.82rem;}
+  footer em{font-family:'Caveat',cursive;font-size:1.25rem;font-style:normal;}
+
+  .hidden{display:none !important;}
+
+  /* ---------- PRINT: only the playbook ---------- */
+  @media print{
+    .hero,.cta-bar,.form-card,.flower-divider,#loading,#error,.result-actions,.join-card,footer{display:none !important;}
+    body{background:#fff;}
+    .content{padding:0;max-width:100%;}
+    .result-card{border:none;box-shadow:none;padding:0;}
+    .slip-corner{display:none;}
+  }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <span class="hero-pill">🔥 She Builds Anyway · The Offer Playbook</span>
+    <h1>The <span class="accent">Offer</span> Playbook</h1>
+    <p class="hero-subtitle">Answer a few quick questions and I'll hand you a plan — a free thing you could make to attract your people, the offer it leads into, and the one tiny step to start. You don't need permission. You need a plan.</p>
+  </header>
+
+  <div class="cta-bar">She stopped asking for permission.</div>
+
+  <div class="content">
+
+    <!-- FORM -->
+    <form id="form" class="form-card">
+      <div class="form-label">Tell me about your world</div>
+      <div class="form-title">Five questions. One personalized playbook.</div>
+      <p class="form-intro">Be honest, not polished — the rougher the truth, the better the plan.</p>
+
+      <div class="row-2">
+        <div class="field">
+          <label class="field-label" for="first_name">Your first name <span class="req">*</span></label>
+          <input type="text" id="first_name" name="first_name" required placeholder="e.g. Donna" />
+        </div>
+        <div class="field">
+          <label class="field-label" for="email">Your email <span class="req">*</span>
+            <span class="hint">your playbook gets sent here too</span></label>
+          <input type="email" id="email" name="email" required placeholder="you@email.com" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="genius"><span class="q">1. What are you genuinely brilliant at?</span> <span class="req">*</span>
+          <span class="hint">the thing people come to you for, or that feels easy to you but hard for everyone else</span></label>
+        <textarea id="genius" name="genius" required placeholder="e.g. I make complicated tech feel simple and doable for non-techy people"></textarea>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="audience_problem"><span class="q">2. Who do you serve, and what painful problem do you solve for them?</span> <span class="req">*</span></label>
+        <textarea id="audience_problem" name="audience_problem" required placeholder="e.g. women 50+ who know AI could help but feel overwhelmed and behind"></textarea>
+      </div>
+
+      <div class="field">
+        <label class="field-label"><span class="q">3. How do you most like to help people?</span></label>
+        <div class="seg four" data-input="format">
+          <button type="button" data-value="One-on-one">1:1</button>
+          <button type="button" data-value="Group programs or classes">Group</button>
+          <button type="button" data-value="Templates, guides, and things she makes">Make stuff</button>
+          <button type="button" data-value="Done-for-them help">For them</button>
+        </div>
+        <input type="hidden" name="format" id="format" />
+      </div>
+
+      <div class="field">
+        <label class="field-label"><span class="q">4. Do you already have a paid offer?</span></label>
+        <div class="seg two" data-input="existing_offer">
+          <button type="button" data-value="Yes — I already have a paid offer to sharpen">Yes, I have one</button>
+          <button type="button" data-value="not yet — design one">Not yet</button>
+        </div>
+        <input type="hidden" name="existing_offer" id="existing_offer" />
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="proof"><span class="q">5. What's a result you're a little proud of?</span>
+          <span class="hint">for yourself or someone you've helped — optional, but it sharpens the playbook</span></label>
+        <textarea id="proof" name="proof" placeholder="e.g. helped a client replace a $2k/mo task with one automation"></textarea>
+      </div>
+
+      <button type="submit" class="btn" id="submitBtn">Build my playbook 🔥</button>
+      <p class="privacy-note">No spam. Your playbook lands here and in your inbox. Unsubscribe any time.</p>
+    </form>
+
+    <div class="flower-divider" id="divider"><span class="bloom"></span></div>
+
+    <!-- LOADING -->
+    <div id="loading" class="loading hidden">
+      <div class="spinner"></div>
+      <p>Working on it… your Offer Playbook is being written. ✨<br>This takes about 20–40 seconds.</p>
+    </div>
+
+    <!-- ERROR -->
+    <div id="error" class="error hidden">
+      <p id="errorMsg">Hmm — something didn't come through. Let's try that again.</p>
+      <button class="btn btn-ghost" id="retryBtn" style="width:auto;">Try again</button>
+    </div>
+
+    <!-- RESULT -->
+    <div id="result" class="result-card hidden">
+      <span class="slip-corner tl"></span><span class="slip-corner tr"></span>
+      <span class="slip-corner bl"></span><span class="slip-corner br"></span>
+      <div id="resultBody"></div>
+    </div>
+    <div id="resultActions" class="result-actions hidden">
+      <button class="btn" onclick="window.print()">📄 Save as PDF</button>
+      <button class="btn btn-ghost" id="startOver">Start over</button>
+    </div>
+
+    <div class="join-card">
+      <span class="bloom"></span>
+      <h3>Come build it with us</h3>
+      <p>She Builds Anyway is a free community of women learning AI from scratch — no overwhelm, no permission needed, just the next small step. Bring your playbook and let's make it real.</p>
+      <a class="btn join-btn" href="https://www.skool.com/shebuildsanyway" target="_blank" rel="noopener">Join She Builds Anyway — it's free 🔥</a>
+    </div>
+
+    <footer>Made with 🧡 by She Builds Anyway · <em>Permission granted. Start where you are.</em></footer>
+  </div>
+
+<script>
+  const WEBHOOK_URL = "https://kristinealise.app.n8n.cloud/webhook/offer-playbook-TEMPLATE";
+
+  const form     = document.getElementById('form');
+  const divider  = document.getElementById('divider');
+  const loading  = document.getElementById('loading');
+  const errorBox = document.getElementById('error');
+  const errorMsg = document.getElementById('errorMsg');
+  const result   = document.getElementById('result');
+  const resultBody = document.getElementById('resultBody');
+  const resultActions = document.getElementById('resultActions');
+
+  let lastPayload = null;
+  const show = el => el.classList.remove('hidden');
+  const hide = el => el.classList.add('hidden');
+
+  /* pacific pill buttons → set hidden input */
+  document.querySelectorAll('.seg').forEach(seg => {
+    const input = document.getElementById(seg.dataset.input);
+    seg.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        seg.querySelectorAll('button').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        input.value = btn.dataset.value;
+      });
+    });
+  });
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form).entries());
+    lastPayload = data;
+    await sendIt(data);
+  });
+
+  document.getElementById('retryBtn').addEventListener('click', () => {
+    if (lastPayload) sendIt(lastPayload);
+  });
+
+  document.getElementById('startOver').addEventListener('click', () => {
+    hide(result); hide(resultActions);
+    show(form); show(divider);
+    form.reset();
+    document.querySelectorAll('.seg button').forEach(b => b.classList.remove('selected'));
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+  async function sendIt(data){
+    hide(form); hide(divider); hide(errorBox); hide(result); hide(resultActions);
+    show(loading);
+    try {
+      const res = await fetch(WEBHOOK_URL, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(data)
+      });
+      if (!res.ok) throw new Error('Server responded ' + res.status);
+      const json = await res.json();
+      const html = json.result_html;
+      if (!html) throw new Error('No result came back.');
+      hide(loading);
+      resultBody.innerHTML = html;
+      show(result); show(resultActions);
+      window.scrollTo({top:result.offsetTop - 20, behavior:'smooth'});
+    } catch (err) {
+      hide(loading);
+      show(errorBox);
+      errorMsg.textContent = "Hmm — that didn't come through (" + err.message + "). Check your internet and try again.";
+    }
+  }
+</script>
+</body>
+</html>
